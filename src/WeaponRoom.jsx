@@ -9,7 +9,7 @@ import { useGLTF } from "@react-three/drei";
 export function WeaponRoom(props) {
   const { nodes, materials } = useGLTF("/model/weaponRoom.glb");
   return (
-    <group {...props} dispose={null} rotation-x={}>
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Plane001.geometry}
         material={materials.TEMBOK_BATU}
