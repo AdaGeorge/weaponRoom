@@ -1,0 +1,2 @@
+yarn i
+yarn dev
