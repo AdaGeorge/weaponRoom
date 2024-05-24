@@ -1,25 +1,23 @@
 //model
-import { WeaponRoom } from "./WeaponRoom";
+import { WeaponRoom } from "./components/Weapons/WeaponRoom";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef } from "react";
 //debug
 import { useControls, button } from "leva";
 
 //drei
-import { CameraControls, OrbitControls } from "@react-three/drei";
-import { AxesHelper } from "three";
+import { CameraControls } from "@react-three/drei";
+import SelectorBox from "./components/Weapons/SelectorBox";
 
 const Scene = () => {
   const cameraRef = useRef();
   const lightRef = useRef();
 
-  const [play, setPlay] = useState(false);
-
   useEffect(() => {
-    cameraRef.current.setLookAt(0, 2.1, 9, 0, 3.5, 0, false);
+    cameraRef.current.setLookAt(0, 2, -1.9, 0, 2.005, -2, false);
   }, []);
 
-  const handleNewLocation = (lookAt, lookFrom) => {
+  const handleNewCameraLocation = (lookAt, lookFrom) => {
     cameraRef.current.setLookAt(...lookFrom, ...lookAt, true);
   };
 
@@ -29,9 +27,6 @@ const Scene = () => {
     }),
     BackWeapons: button(() => {
       cameraRef.current.setLookAt(0, 2, -1.9, 0, 2.02, -2, true);
-    }),
-    sound: button(() => {
-      setPlay(!play);
     }),
   });
   return (
@@ -43,6 +38,7 @@ const Scene = () => {
         ref={cameraRef}
         rotate={cameraControls.horizontalRotation}
         smoothTime={1}
+        mouseButtons={{ left: 1, middle: 8, right: 2, wheel: 0 }}
       />
       <directionalLight
         castShadow
@@ -52,6 +48,14 @@ const Scene = () => {
         ref={lightRef}
       />
       <WeaponRoom castShadow />
+      <SelectorBox position={[-0.15, 1.8, -6]} size={[0.6, 0.9]} />
+      <SelectorBox position={[0, 2.8, -6]} size={[0.6, 0.9]} />
+      <SelectorBox position={[0.7, 2, -5.9]} size={[0.9, 0.8]} />
+      <SelectorBox position={[1.7, 2, -5.9]} size={[0.9, 0.8]} />
+      <SelectorBox position={[1.2, 3.08, -5.8]} size={[1.1, 1]} />
+      <SelectorBox position={[-0.75, 2.3, -6]} size={[0.4, 2]} />
+      <SelectorBox position={[-1.35, 2.3, -5.8]} size={[0.4, 2]} />
+      <SelectorBox position={[-1.9, 2.3, -5.7]} size={[0.4, 2]} />
     </Fragment>
   );
 };
