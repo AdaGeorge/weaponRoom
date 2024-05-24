@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { WeaponModalContext } from "../context/weaponModal";
+import { WeaponModalContext } from "../context/weaponModal.context";
 
 const Modal = ({}) => {
   const { isOpenModal, setIsOpenModal } = useContext(WeaponModalContext);

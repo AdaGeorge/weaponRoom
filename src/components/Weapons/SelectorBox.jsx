@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { WeaponModalContext } from "../../context/weaponModal";
+import { WeaponModalContext } from "../../context/weaponModal.context";
 
 const SelectorBox = ({ position, size }) => {
   const [hovered, setHovered] = useState(false);
