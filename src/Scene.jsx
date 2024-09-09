@@ -8,6 +8,7 @@ import { useControls, button } from "leva";
 //drei
 import { CameraControls } from "@react-three/drei";
 import SelectorBox from "./components/Weapons/SelectorBox";
+import { weapons } from "./utils/weapons";
 
 const Scene = () => {
   const cameraRef = useRef();
@@ -23,10 +24,10 @@ const Scene = () => {
 
   const cameraControls = useControls("controls", {
     GoBack: button(() => {
-      cameraRef.current.setLookAt(0, 2.1, 9, 0, 3.5, 0, true);
+      cameraRef.current.setLookAt(0, 2.1, 8, 0, 3.5, 0, true);
     }),
     BackWeapons: button(() => {
-      cameraRef.current.setLookAt(0, 2, -1.9, 0, 2.02, -2, true);
+      cameraRef.current.setLookAt(0, 2, -1.9, 0, 2, -2, true);
     }),
   });
   return (
@@ -48,14 +49,9 @@ const Scene = () => {
         ref={lightRef}
       />
       <WeaponRoom castShadow />
-      <SelectorBox position={[-0.15, 1.8, -6]} size={[0.6, 0.9]} />
-      <SelectorBox position={[0, 2.8, -6]} size={[0.6, 0.9]} />
-      <SelectorBox position={[0.7, 2, -5.9]} size={[0.9, 0.8]} />
-      <SelectorBox position={[1.7, 2, -5.9]} size={[0.9, 0.8]} />
-      <SelectorBox position={[1.2, 3.08, -5.8]} size={[1.1, 1]} />
-      <SelectorBox position={[-0.75, 2.3, -6]} size={[0.4, 2]} />
-      <SelectorBox position={[-1.35, 2.3, -5.8]} size={[0.4, 2]} />
-      <SelectorBox position={[-1.9, 2.3, -5.7]} size={[0.4, 2]} />
+      {weapons.map((weapon, index) => {
+        return <SelectorBox key={index} weapon={weapon} />;
+      })}
     </Fragment>
   );
 };
